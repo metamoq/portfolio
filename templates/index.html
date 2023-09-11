@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<div class="portfolio-header">
+  <h1>Моё портфолио</h1>
+</div>
+<div class="gallery">
+  <a href="{{ url_for('image1') }}">
+    <img src="{{ url_for('static', filename='images/image1.png') }}" alt="Изображение 1">
+    <span class="image-text">ИИ Вор Эмоций</span>
+  </a>
+  <a href="{{ url_for('image2') }}">
+    <img src="{{ url_for('static', filename='images/image2.png') }}" alt="Изображение 2">
+    <span class="image-text">Генератор музыки</span>
+  </a>
+  <a href="{{ url_for('image3') }}">
+    <img src="{{ url_for('static', filename='images/image3.png') }}" alt="Изображение 3">
+    <span class="image-text">Генератор изображений</span>
+  </a>
+</div>
+</body>
+</html>

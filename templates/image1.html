@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>AI Вор Эмоций</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#user-input-form').submit(function(event) {
+                event.preventDefault();
+                var userInput = $('#user-input').val();
+                var data = {
+                    "prompt": userInput,
+                    "temperature": 0.7,
+                    "top_p": 1,
+                    "frequency_penalty": 0.0,
+                    "Presentation": "text"
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: 'https://api.github.com/gpt-3.5/Generate',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: function(data) {
+                        var generated_text = JSON.parse(data).generated_text;
+                        $('#model-response').text(generated_text);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Вор Эмоций AI</h1>
+    <form id="user-input-form" method="POST">
+        <input type="text" id="user-input" placeholder="Введите запрос">
+        <button type="submit">Отправить</button>
+    </form>
+    <div>
+        <h2>Ответ модели:</h2>
+        <div id="model-response-container">
+            <p id="model-response"></p>
+        </div>
+    </div>
+</body>
+</html>
