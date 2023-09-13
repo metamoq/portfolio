@@ -17,10 +17,18 @@
     <img src="{{ url_for('static', filename='images/image2.png') }}" alt="Изображение 2">
     <span class="image-text">Генератор музыки</span>
   </a>
-  <a href="{{ url_for('image3') }}">
+  <a href="{{ url_for('image3') }}" onclick="launchLama()">
     <img src="{{ url_for('static', filename='images/image3.png') }}" alt="Изображение 3">
-    <span class="image-text">Генератор изображений</span>
+    <span class="image-text">Модель Лама</span>
   </a>
 </div>
+
+<script>
+  function launchLama() {
+    // Перенаправляем пользователя на главную страницу после нажатия на image3.html
+    window.location.href = '/image3.html';
+  }
+</script>
+
 </body>
 </html>

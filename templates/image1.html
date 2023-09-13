@@ -27,6 +27,14 @@
                     success: function(data) {
                         var generated_text = JSON.parse(data).generated_text;
                         $('#model-response').text(generated_text);
+
+                        // Добавляем сообщение пользователя в историю
+                        var userMessage = '<div class="message user-message"><strong>Вы:</strong> ' + userInput + '</div>';
+                        $('#chat-history').append(userMessage);
+
+                        // Добавляем ответ модели в историю
+                        var modelMessage = '<div class="message model-message"><strong>Модель:</strong> ' + generated_text + '</div>';
+                        $('#chat-history').append(modelMessage);
                     }
                 });
             });
@@ -35,6 +43,9 @@
 </head>
 <body>
     <h1>Вор Эмоций AI</h1>
+    <div id="chat-history">
+        <!-- История сообщений будет отображаться здесь -->
+    </div>
     <form id="user-input-form" method="POST">
         <input type="text" id="user-input" placeholder="Введите запрос">
         <button type="submit">Отправить</button>
